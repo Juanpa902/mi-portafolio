@@ -88,7 +88,7 @@ const Portfolio = () => {
   const categories = ['Piezas Gráficas', 'Video', 'Diseño Web', '3D'];
 
   const projects = [
-    // --- PIEZAS GRÁFICAS ---
+    // --- PIEZAS GRÁFICAS (Tus imágenes reales) ---
     { id: 101, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_592c434fc6cc4c168eea8ac21886a9f1~mv2.png" },
     { id: 102, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_582c19417f9549628ff946c4c47c5b84~mv2.png" },
     { id: 103, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_09013a86424c43edbf82c3975a6df7ef~mv2.png" },
@@ -96,6 +96,7 @@ const Portfolio = () => {
     { id: 105, category: "Piezas Gráficas", image: "https://ik.imagekit.io/Juanpa/Frame%202.png" },
     { id: 106, category: "Piezas Gráficas", image: "https://ik.imagekit.io/Juanpa/Frame%203.png" },
     { id: 107, category: "Piezas Gráficas", image: "https://ik.imagekit.io/Juanpa/Portada%20Revista%20Iris.png" },
+    { id: 108, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_e8300fd338d0411e845397f88a9191d6~mv2.png" },
     
     // --- VIDEO ---
     { id: 201, category: "Video", image: "https://ik.imagekit.io/Juanpa/Video%20Testimonios%20EI_1.mp4" },
@@ -105,6 +106,7 @@ const Portfolio = () => {
     { id: 205, category: "Video", image: "https://ik.imagekit.io/Juanpa/Campan%CC%83a%20_17%20-%20Reel3.mp4" },
     { id: 206, category: "Video", image: "https://video.wixstatic.com/video/342780_0f96911a63e64abebcd9e1308ecb9d1b/1080p/mp4/file.mp4" },
     { id: 207, category: "Video", image: "https://video.wixstatic.com/video/342780_5438101c79de44c293c629eeea61a6f4/720p/mp4/file.mp4" },
+    { id: 208, category: "Video", image: "https://video.wixstatic.com/video/342780_49efb7a21dd6406ebabacdbf52794631/1080p/mp4/file.mp4" },
 
     // --- DISEÑO WEB ---
     { id: 301, category: "Diseño Web", image: "https://static.wixstatic.com/media/342780_ca6b75536645479fa416c8ec8ee16d3c~mv2.png" },
@@ -113,6 +115,8 @@ const Portfolio = () => {
     { id: 304, category: "Diseño Web", image: "https://static.wixstatic.com/media/342780_37dc0ce90575470a842db452002f4ad7~mv2.png" },
     { id: 305, category: "Diseño Web", image: "https://static.wixstatic.com/media/342780_102190c5bc8c4eae823d2809076b3408~mv2.png" },
     { id: 306, category: "Diseño Web", image: "https://static.wixstatic.com/media/342780_8c16fd6aa13f42ccaac86db2ff2c4203~mv2.png" },
+    { id: 307, category: "Diseño Web", image: "https://static.wixstatic.com/media/342780_ad0b16b64b3a46f3941ee447b262ad4a~mv2.png" },
+    { id: 308, category: "Diseño Web", image: "https://static.wixstatic.com/media/342780_0cc4191f8b4f4772b926c4c4c1e65680~mv2.png" },
 
     // --- 3D ---
     { id: 401, category: "3D", image: "https://static.wixstatic.com/media/342780_9586a88b0f8a4b8ea9d80dfe0e029153~mv2.png" },
@@ -122,6 +126,7 @@ const Portfolio = () => {
     { id: 405, category: "3D", image: "https://static.wixstatic.com/media/342780_5f05ca0967374560912aa772efb7a22f~mv2.png" },
     { id: 406, category: "3D", image: "https://static.wixstatic.com/media/342780_05a1728aadc24d0d8fff087223d6d7b8~mv2.png" },
     { id: 407, category: "3D", image: "https://static.wixstatic.com/media/342780_a7c90dc64301432a948d2d84eb1bbb3a~mv2.jpg" },
+    { id: 408, category: "3D", image: "https://static.wixstatic.com/media/342780_7575054049f94210906281252307f0f7~mv2.png" },
   ];
 
   // Scroll Logic Inteligente
@@ -130,7 +135,6 @@ const Portfolio = () => {
     if (!container) return;
 
     const handleWheel = (e) => {
-      // 1. Detectar si estamos sobre el contenedor de scroll vertical del portafolio
       const scrollContainer = e.target.closest('.portfolio-scroll-container');
 
       if (scrollContainer) {
@@ -179,29 +183,15 @@ const Portfolio = () => {
     }
   };
 
-  // Filtramos pero NO paginamos
   const filteredProjects = projects.filter(p => p.category === activeCategory);
   
-  // Eliminamos la lógica de paginación
-  // const totalPages ...
-  // const currentProjects = filteredProjects.slice...
-  // const nextPage ...
-  // const prevPage ...
-
-  // Usamos todos los proyectos filtrados directamente
+  // Mostrar TODOS los proyectos sin paginación
   const currentProjects = filteredProjects;
 
   const isVideo = (url) => url.includes('.mp4');
 
-  // Función para abrir el modal
-  const openModal = (item) => {
-    setSelectedItem(item);
-  };
-
-  // Función para cerrar el modal
-  const closeModal = () => {
-    setSelectedItem(null);
-  };
+  const openModal = (item) => setSelectedItem(item);
+  const closeModal = () => setSelectedItem(null);
 
   return (
     <div className="bg-neutral-900 text-white font-sans h-screen w-screen overflow-hidden relative selection:bg-cyan-500 selection:text-black">
@@ -332,7 +322,7 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* SLIDE 4: PORTFOLIO GRID */}
+        {/* SLIDE 4: PORTFOLIO GRID (CORREGIDO: GRID ESTRICTO + BLUR BACKGROUND) */}
         <section className="flex-none w-screen h-screen snap-center relative bg-neutral-900 flex flex-col overflow-hidden">
           <div className="px-8 md:px-20 pt-12 pb-6 border-b border-white/10 flex flex-col md:flex-row md:items-end justify-between gap-6 bg-neutral-900 z-10">
             <div>
@@ -353,23 +343,33 @@ const Portfolio = () => {
                 ))}
               </div>
             </div>
-            
-            {/* Paginación eliminada */}
           </div>
 
           <div className="flex-1 p-8 md:p-20 relative overflow-y-auto portfolio-scroll-container">
             {currentProjects.length > 0 ? (
-              <div className="flex flex-wrap gap-4 justify-center">
+              // GRID Estricto para alineación perfecta
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {currentProjects.map((project) => (
                   <div 
                     key={project.id} 
-                    className="relative group h-[250px] md:h-[300px] flex-auto max-w-2xl rounded-lg overflow-hidden border border-white/5 bg-neutral-800 cursor-pointer"
+                    // CAMBIO: 'h-72' reemplazado por 'aspect-square' para ser cuadrado perfecto
+                    className="relative group aspect-square rounded-lg overflow-hidden border border-white/5 bg-neutral-900 cursor-pointer shadow-lg"
                     onClick={() => openModal(project)}
                   >
+                    {/* CAPA 1: Fondo desenfocado (rellena el espacio vacío) */}
+                    <div className="absolute inset-0 w-full h-full overflow-hidden">
+                      {isVideo(project.image) ? (
+                        <video src={project.image} className="w-full h-full object-cover opacity-40 blur-2xl scale-125" muted />
+                      ) : (
+                        <img src={project.image} alt="" className="w-full h-full object-cover opacity-40 blur-2xl scale-125" />
+                      )}
+                    </div>
+
+                    {/* CAPA 2: Contenido Principal (Entrar sin cortarse) */}
                     {isVideo(project.image) ? (
                       <video
                         src={project.image}
-                        className="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-contain z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
                         autoPlay
                         loop
                         muted
@@ -379,13 +379,14 @@ const Portfolio = () => {
                       <img 
                         src={project.image} 
                         alt={project.category} 
-                        className="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-contain z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
                       />
                     )}
                     
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 pointer-events-none flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 p-2 rounded-full">
-                        {isVideo(project.image) ? <Play size={24} className="text-white" /> : <span className="text-white text-sm font-bold">VER +</span>}
+                    {/* CAPA 3: Overlay Hover */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 z-20 flex items-center justify-center pointer-events-none">
+                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 p-2 rounded-full backdrop-blur-sm border border-white/10">
+                        {isVideo(project.image) ? <Play size={20} className="text-white fill-current" /> : <span className="text-white text-xs font-bold tracking-widest px-2">VER</span>}
                       </div>
                     </div>
                   </div>
@@ -447,14 +448,14 @@ const Portfolio = () => {
 
       </div>
       
-      {/* MODAL PARA VER PROYECTOS */}
+      {/* MODAL */}
       {selectedItem && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-10 transition-opacity duration-300"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-10 transition-opacity duration-300"
           onClick={closeModal}
         >
           <button 
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/50 rounded-full"
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-3 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md"
             onClick={closeModal}
           >
             <X size={32} />
@@ -462,12 +463,12 @@ const Portfolio = () => {
           
           <div 
             className="relative max-w-7xl w-full max-h-full flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()} // Evitar cierre al hacer clic dentro del contenido
+            onClick={(e) => e.stopPropagation()} 
           >
             {isVideo(selectedItem.image) ? (
               <video
                 src={selectedItem.image}
-                className="max-w-full max-h-[85vh] rounded-lg shadow-2xl"
+                className="max-w-full max-h-[85vh] rounded-lg shadow-2xl outline-none"
                 controls
                 autoPlay
                 playsInline
