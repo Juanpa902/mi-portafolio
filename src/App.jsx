@@ -21,7 +21,7 @@ const Portfolio = () => {
   const containerRef = useRef(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeCategory, setActiveCategory] = useState('Piezas Gráficas');
-  const [selectedItem, setSelectedItem] = useState(null); // Estado para el modal
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const TOTAL_SLIDES = 5;
 
@@ -88,15 +88,19 @@ const Portfolio = () => {
   const categories = ['Piezas Gráficas', 'Video', 'Diseño Web', '3D'];
 
   const projects = [
-    // --- PIEZAS GRÁFICAS (Tus imágenes reales) ---
-    { id: 101, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_592c434fc6cc4c168eea8ac21886a9f1~mv2.png" },
-    { id: 102, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_582c19417f9549628ff946c4c47c5b84~mv2.png" },
+    // --- PIEZAS GRÁFICAS (Reorganizadas) ---
+    // #1 (Antes era la #8)
+    { id: 101, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_130963c08b394d8ca822e3445771e244~mv2.png" },
+    // #2 (Antes era la #7)
+    { id: 102, category: "Piezas Gráficas", image: "https://ik.imagekit.io/Juanpa/Portada%20Revista%20Iris.png" },
     { id: 103, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_09013a86424c43edbf82c3975a6df7ef~mv2.png" },
     { id: 104, category: "Piezas Gráficas", image: "https://ik.imagekit.io/Juanpa/Frame%201.png" },
     { id: 105, category: "Piezas Gráficas", image: "https://ik.imagekit.io/Juanpa/Frame%202.png" },
     { id: 106, category: "Piezas Gráficas", image: "https://ik.imagekit.io/Juanpa/Frame%203.png" },
-    { id: 107, category: "Piezas Gráficas", image: "https://ik.imagekit.io/Juanpa/Portada%20Revista%20Iris.png" },
-    { id: 108, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_e8300fd338d0411e845397f88a9191d6~mv2.png" },
+    // #7 (Antes era la #2)
+    { id: 107, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_582c19417f9549628ff946c4c47c5b84~mv2.png" },
+    // #8 (Antes era la #1)
+    { id: 108, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_592c434fc6cc4c168eea8ac21886a9f1~mv2.png" },
     
     // --- VIDEO ---
     { id: 201, category: "Video", image: "https://ik.imagekit.io/Juanpa/Video%20Testimonios%20EI_1.mp4" },
@@ -135,7 +139,8 @@ const Portfolio = () => {
     if (!container) return;
 
     const handleWheel = (e) => {
-      const scrollContainer = e.target.closest('.portfolio-scroll-container');
+      // 1. Detectar si estamos sobre el contenedor de scroll vertical del portafolio o de "Sobre Mí"
+      const scrollContainer = e.target.closest('.scroll-vertical-area');
 
       if (scrollContainer) {
         const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
@@ -270,20 +275,21 @@ const Portfolio = () => {
              <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
            </div>
 
-           <div className="relative z-10 w-full max-w-4xl px-8 md:px-20 flex flex-col justify-center h-full">
-             <div className="mb-12">
-               <h3 className="text-5xl md:text-6xl font-bold mb-8 text-white">Sobre Mí</h3>
-               <p className="text-xl md:text-3xl font-light text-gray-300 leading-relaxed text-justify md:text-left">
+           {/* CONTENEDOR CON SCROLL PARA MOVIL */}
+           <div className="relative z-10 w-full max-w-4xl px-6 md:px-20 flex flex-col justify-start md:justify-center h-full overflow-y-auto md:overflow-visible py-24 md:py-0 scroll-vertical-area hide-scrollbar">
+             <div className="mb-12 shrink-0">
+               <h3 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 text-white">Sobre Mí</h3>
+               <p className="text-lg md:text-3xl font-light text-gray-300 leading-relaxed text-justify md:text-left">
                  Soy <span className="text-cyan-400 font-medium">Diseñador Digital y Multimedia</span> egresado de la Universidad Colegio Mayor de Cundinamarca. Tengo experiencia en edición de fotos y video, branding, diseño web y creación de contenido gráfico para redes sociales. 
                </p>
-               <p className="text-xl md:text-3xl font-light text-gray-300 leading-relaxed mt-6 text-justify md:text-left">
+               <p className="text-lg md:text-3xl font-light text-gray-300 leading-relaxed mt-4 md:mt-6 text-justify md:text-left">
                  Me apasiona desarrollar piezas creativas que integren estrategia, innovación visual y comunicación efectiva.
                </p>
              </div>
 
-             <div>
+             <div className="shrink-0 pb-10 md:pb-0">
                <h4 className="text-cyan-400 font-bold tracking-[0.2em] uppercase mb-6 text-sm border-b border-white/10 pb-2 w-fit">Software & Herramientas</h4>
-               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+               <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
                  {tools.map((tool, index) => (
                    <div 
                      key={index} 
@@ -292,7 +298,7 @@ const Portfolio = () => {
                      <div>
                        {tool.icon}
                      </div>
-                     <span className="text-sm font-medium text-gray-300 group-hover:text-white uppercase tracking-wider text-center">{tool.name}</span>
+                     <span className="text-xs md:text-sm font-medium text-gray-300 group-hover:text-white uppercase tracking-wider text-center">{tool.name}</span>
                    </div>
                  ))}
                </div>
@@ -345,14 +351,14 @@ const Portfolio = () => {
             </div>
           </div>
 
-          <div className="flex-1 p-8 md:p-20 relative overflow-y-auto portfolio-scroll-container">
+          <div className="flex-1 p-8 md:p-20 relative overflow-y-auto scroll-vertical-area hide-scrollbar">
             {currentProjects.length > 0 ? (
               // GRID Estricto para alineación perfecta
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pb-20">
                 {currentProjects.map((project) => (
                   <div 
                     key={project.id} 
-                    // CAMBIO: 'h-72' reemplazado por 'aspect-square' para ser cuadrado perfecto
+                    // Celda de tamaño fijo y uniforme
                     className="relative group aspect-square rounded-lg overflow-hidden border border-white/5 bg-neutral-900 cursor-pointer shadow-lg"
                     onClick={() => openModal(project)}
                   >
