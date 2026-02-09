@@ -103,7 +103,7 @@ const Portfolio = () => {
     { id: 108, category: "Piezas Gráficas", image: "https://static.wixstatic.com/media/342780_592c434fc6cc4c168eea8ac21886a9f1~mv2.png" },
     
     // --- VIDEO ---
-    { id: 201, category: "Video", image: "https://ik.imagekit.io/Juanpa/Video%20Testimonios%20EI_1.mp4" },
+    { id: 201, category: "Video", image: "https://video.wixstatic.com/video/342780_51652fe4dc874bddb14fd16931e9071c/1080p/mp4/file.mp4" },
     { id: 202, category: "Video", image: "https://ik.imagekit.io/Juanpa/Emily%20Clavel.mp4" },
     { id: 203, category: "Video", image: "https://ik.imagekit.io/Juanpa/Reel%20Optimizacio%CC%81n%20Xua.mp4?tr=orig" },
     { id: 204, category: "Video", image: "https://ik.imagekit.io/Juanpa/Campan%CC%83a%20_17%20-%20Reel2.mp4" },
